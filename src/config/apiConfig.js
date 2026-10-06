@@ -1,6 +1,7 @@
 import axios from "axios"
 
 export const API_BASE_URL = "http://localhost:8000/api/"
+export const WEBSOCKET_URL = `${API_BASE_URL.replace(/^http/, "ws").replace(/\/api\/?$/, "")}/ws`;
 
 export const api=axios.create({
     baseURL:API_BASE_URL
@@ -13,7 +14,6 @@ api.interceptors.request.use(config => {
         config.headers["Authorization"] = `Bearer ${jwt}`;
         config.headers["Role"] = role;
     }
-    console.log("API request headers:", config.headers)
     return config;
 }, error => {
     return Promise.reject(error);

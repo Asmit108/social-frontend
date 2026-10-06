@@ -11,9 +11,6 @@ import {
     FIND_ALL_POSTS_FAILURE,
     FIND_ALL_POSTS_REQUEST,
     FIND_ALL_POSTS_SUCCESS,
-    FIND_POST_FAILURE,
-    FIND_POST_REQUEST,
-    FIND_POST_SUCCESS,
     FIND_TOP_POSTS_FAILURE,
     FIND_TOP_POSTS_REQUEST,
     FIND_TOP_POSTS_SUCCESS,
@@ -25,7 +22,7 @@ import {
     LIKE_POST_SUCCESS,
     SAVE_POST_FAILURE,
     SAVE_POST_REQUEST,
-    SAVE_POST_SUCCESS,
+    SAVE_POST_SUCCESS
 } from './ActionType';
 
 const initialState = {
@@ -41,7 +38,6 @@ export const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_POST_REQUEST:
         case DELETE_POST_REQUEST:
-        case FIND_POST_REQUEST:
         case FIND_USER_POSTS_REQUEST:
         case FIND_ALL_POSTS_REQUEST:
         case SAVE_POST_REQUEST:
@@ -70,7 +66,6 @@ export const postReducer = (state = initialState, action) => {
 
         case CREATE_POST_FAILURE:
         case DELETE_POST_FAILURE:
-        case FIND_POST_FAILURE:
         case FIND_USER_POSTS_FAILURE:
         case FIND_ALL_POSTS_FAILURE:
         case SAVE_POST_FAILURE:

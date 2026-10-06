@@ -37,7 +37,8 @@ export const deletePost = (postId) => async (dispatch) => {
         dispatch(deletePostSuccess(response.data));
         return { success: true, data: response.data };
     } catch (error) {
-        dispatch(deletePostFailure(error.message));
+        const message = error.response?.data?.message || error.response?.data?.error || error.message || 'Delete post failed';
+        dispatch(deletePostFailure(message));
         return { success: false, error: message };
     }
 };
@@ -69,9 +70,9 @@ export const findAllPosts = () => async (dispatch) => {
         dispatch(findAllPostsSuccess(response.data));
         return { success: true, data: response.data };
     } catch (error) {
-        const message = error.response?.data?.message || error.message || 'Login failed';
-        dispatch(findAllPostsFailure(error.message));
-        return { success: false, error: error.message };
+        const message = error.response?.data?.message || error.response?.data?.error || error.message || 'Load posts failed';
+        dispatch(findAllPostsFailure(message));
+        return { success: false, error: message };
     }
 };
 
@@ -86,7 +87,8 @@ export const savePost = (postId) => async (dispatch) => {
         dispatch(savePostSuccess(response.data));
         return { success: true, data: response.data };
     } catch (error) {
-        dispatch(savePostFailure(error.message));
+        const message = error.response?.data?.message || error.response?.data?.error || error.message || 'Save post failed';
+        dispatch(savePostFailure(message));
         return { success: false, error: message };
     }
 };

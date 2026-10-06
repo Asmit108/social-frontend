@@ -1,0 +1,9 @@
+services:
+  social-frontend-app:
+    build: .
+    container_name: social-frontend-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped

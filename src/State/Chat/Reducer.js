@@ -31,20 +31,20 @@ export const chatReducer = (state = initialState, action) => {
         case FIND_ALL_CHATS_REQUEST:
         case DELETE_ADMIN_CHAT_REQUEST:
         case DELETE_CHAT_REQUEST:
-            return { ...state, isLoading: true};
+            return { ...state, isLoading: true, error: null };
 
         case CREATE_CHAT_SUCCESS:
-            return { ...state, isLoading: false, chat: action.payload };
+            return { ...state, isLoading: false, error: null, chat: action.payload };
 
         case FIND_USER_CHATS_SUCCESS:
-            return { ...state, isLoading: false, userChats: action.payload };
+            return { ...state, isLoading: false, error: null, userChats: action.payload };
 
         case FIND_ALL_CHATS_SUCCESS:
-            return { ...state, isLoading: false, allChats: action.payload };
+            return { ...state, isLoading: false, error: null, allChats: action.payload };
 
         case DELETE_ADMIN_CHAT_SUCCESS:
         case DELETE_CHAT_SUCCESS:
-            return { ...state, isLoading: false};
+            return { ...state, isLoading: false, error: null };
 
         case CREATE_CHAT_FAILURE:
         case FIND_USER_CHATS_FAILURE:

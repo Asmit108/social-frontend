@@ -48,37 +48,39 @@ export const findAllChats = () => async (dispatch) => {
     try {
         const response = await api.get(`${API_BASE_URL}admin/chats`);
         dispatch(findAllChatsSuccess(response.data));
+        console.log("All chats fetched successfully:", response.data);
         return { success: true, data: response.data };
     } catch (error) {
         dispatch(findAllChatsFailure(error.message));
+        console.log("Error fetching all chats:", error.message);
         return { success: false, error: error.message };
     }
 };
 
-const deleteAdminChatRequest = () => ({ type: DELETE_ADMIN_CHAT_REQUEST });
-const deleteAdminChatSuccess = (response) => ({ type: DELETE_ADMIN_CHAT_SUCCESS, payload: response });
-const deleteAdminChatFailure = (error) => ({ type: DELETE_ADMIN_CHAT_FAILURE, payload: error });
+const deleteOwnChatRequest = () => ({ type: DELETE_CHAT_REQUEST });
+const deleteOwnChatSuccess = (response) => ({ type: DELETE_CHAT_SUCCESS, payload: response });
+const deleteOwnChatFailure = (error) => ({ type: DELETE_CHAT_FAILURE, payload: error });
 
-export const deleteAdminChat = (chatId) => async (dispatch) => {
-    dispatch(deleteAdminChatRequest());
+export const deleteOwnChat = (chatId) => async (dispatch) => {
+    dispatch(deleteOwnChatRequest());
     try {
-        const response = await api.delete(`${API_BASE_URL}admin/chats/${chatId}`);
-        dispatch(deleteAdminChatSuccess(response.data));
+        const response = await api.delete(`${API_BASE_URL}chats/${chatId}`);
+        dispatch(deleteOwnChatSuccess(response.data));
         return { success: true, data: response.data };
     } catch (error) {
-        dispatch(deleteAdminChatFailure(error.message));
+        dispatch(deleteOwnChatFailure(error.message));
         return { success: false, error: error.message };
     }
 };
 
-const deleteChatRequest = () => ({ type: DELETE_CHAT_REQUEST });
-const deleteChatSuccess = (response) => ({ type: DELETE_CHAT_SUCCESS, payload: response });
-const deleteChatFailure = (error) => ({ type: DELETE_CHAT_FAILURE, payload: error });
+const deleteChatRequest = () => ({ type: DELETE_ADMIN_CHAT_REQUEST });
+const deleteChatSuccess = (response) => ({ type: DELETE_ADMIN_CHAT_SUCCESS, payload: response });
+const deleteChatFailure = (error) => ({ type: DELETE_ADMIN_CHAT_FAILURE, payload: error });
 
 export const deleteChat = (chatId) => async (dispatch) => {
     dispatch(deleteChatRequest());
     try {
-        const response = await api.delete(`${API_BASE_URL}chats/${chatId}`);
+        const response = await api.delete(`${API_BASE_URL}admin/chats/${chatId}`);
         dispatch(deleteChatSuccess(response.data));
         return { success: true, data: response.data };
     } catch (error) {
@@ -86,3 +88,5 @@ export const deleteChat = (chatId) => async (dispatch) => {
         return { success: false, error: error.message };
     }
 };
+
+export const deleteAdminChat = deleteChat;
