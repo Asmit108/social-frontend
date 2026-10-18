@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withCredentials([
                     sshUserPrivateKey(
-                        credentialsId: 'ec2-ssh-key',
+                        credentialsId: 'social-ec2-ssh-key',
                         keyFileVariable: 'SSH_KEY',
                     ),
                     file(
