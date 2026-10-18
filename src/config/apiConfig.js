@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const API_BASE_URL = "https://13.233.194.9:8000/api/"
-export const WEBSOCKET_URL = `${API_BASE_URL.replace(/^http/, "ws").replace(/\/api\/?$/, "")}/ws`;
+export const WEBSOCKET_URL = "wss://13.233.194.9:8000/ws"
 
 export const api=axios.create({
     baseURL:API_BASE_URL
